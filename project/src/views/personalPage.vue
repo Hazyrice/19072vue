@@ -42,6 +42,7 @@
 			</el-col>
 		</el-row>
 		<el-row>
+<<<<<<< HEAD
 			<el-col :span="5">
 				<el-row class="tac">
 					<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
@@ -107,6 +108,22 @@
 					</div>
 				</div>
 			</el-col>
+=======
+			<el-col :span="6">
+				<el-row class="tac">
+					<el-col :span="12">
+						<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+							<h5 style="">全部功能</h5>
+							<el-menu-item index="1" class='side-guide'><span slot="title">我的购物车</span></el-menu-item>
+							<el-menu-item index="2" class='side-guide'><span slot="title">我的订单</span></el-menu-item>
+							<el-menu-item index="3" class='side-guide'><span slot="title">我的收藏</span></el-menu-item>
+						</el-menu>
+					</el-col>
+				</el-row>
+			</el-col>
+			<el-col :span="9"><div></div></el-col>
+			<el-col :span="9"><div></div></el-col>
+>>>>>>> 8869d63a243df5ab220a8603c554a52bf85a40f0
 		</el-row>
 	</div>
 </template>
@@ -134,6 +151,7 @@ export default {
 		},
 		handleClose(key, keyPath) {
 			console.log(key, keyPath);
+<<<<<<< HEAD
 		},
 		load() {
 			this.busy = true;
@@ -147,6 +165,8 @@ export default {
 					this.busy = false;
 				}
 			}, 700);
+=======
+>>>>>>> 8869d63a243df5ab220a8603c554a52bf85a40f0
 		}
 	}
 };
@@ -180,6 +200,7 @@ a {
 .tac {
 	margin: 40px 0 0 50%;
 }
+<<<<<<< HEAD
 .self-info {
 	height: 120px;
 	margin-top: 40px;
@@ -322,4 +343,6 @@ a {
 	.el-calendar-table .el-calendar-day {
 		height: 40px!important;
 	}
+=======
+>>>>>>> 8869d63a243df5ab220a8603c554a52bf85a40f0
 </style>
