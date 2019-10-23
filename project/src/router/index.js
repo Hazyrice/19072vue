@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/HomePage.vue'
-import Person from '../views/PersonalPage.vue'
+import Person from '../views/personalPage.vue'
 
 Vue.use(VueRouter)
 
