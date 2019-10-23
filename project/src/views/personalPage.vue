@@ -1,10 +1,10 @@
 <template>
 	<div>
+		<el-backtop :bottom="60"></el-backtop>
 		<el-row>
 			<el-col :span="24">
 				<div class="top-part grid-content bg-purple-dark">
 					<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-						<div class="logo-part"></div>
 						<el-menu-item index="1">首页</el-menu-item>
 						<el-submenu index="2">
 							<template slot="title">
@@ -35,7 +35,6 @@
 								<el-menu-item index="2-3-3">分享绑定</el-menu-item>
 							</el-submenu>
 						</el-submenu>
-
 						<el-menu-item index="3">消息</el-menu-item>
 					</el-menu>
 					<div class="line"></div>
@@ -43,9 +42,20 @@
 			</el-col>
 		</el-row>
 		<el-row>
-			<el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-			<el-col :span="9"><div class="grid-content bg-purple-light"></div></el-col>
-			<el-col :span="9"><div class="grid-content bg-purple"></div></el-col>
+			<el-col :span="6">
+				<el-row class="tac">
+					<el-col :span="12">
+						<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+							<h5 style="">全部功能</h5>
+							<el-menu-item index="1" class='side-guide'><span slot="title">我的购物车</span></el-menu-item>
+							<el-menu-item index="2" class='side-guide'><span slot="title">我的订单</span></el-menu-item>
+							<el-menu-item index="3" class='side-guide'><span slot="title">我的收藏</span></el-menu-item>
+						</el-menu>
+					</el-col>
+				</el-row>
+			</el-col>
+			<el-col :span="9"><div></div></el-col>
+			<el-col :span="9"><div></div></el-col>
 		</el-row>
 	</div>
 </template>
@@ -61,6 +71,12 @@ export default {
 	methods: {
 		handleSelect(key, keyPath) {
 			console.log(key, keyPath);
+		},
+		handleOpen(key, keyPath) {
+			console.log(key, keyPath);
+		},
+		handleClose(key, keyPath) {
+			console.log(key, keyPath);
 		}
 	}
 };
@@ -74,29 +90,11 @@ export default {
 a {
 	text-decoration: none;
 }
-.logo-part {
-	width: 300px;
-}
 .top-part {
 	height: 60px;
 }
-.el-row {
-	margin-bottom: 20px;
-	&:last-child {
-		margin-bottom: 0;
-	}
-}
 .el-col {
 	border-radius: 4px;
-}
-.bg-purple-dark {
-	background: #99a9bf;
-}
-.bg-purple {
-	background: #d3dce6;
-}
-.bg-purple-light {
-	background: #e5e9f2;
 }
 .grid-content {
 	border-radius: 4px;
@@ -105,5 +103,11 @@ a {
 .row-bg {
 	padding: 10px 0;
 	background-color: #f9fafc;
+}
+.side-guide span {
+	font-size: 13px;
+}
+.tac {
+	margin: 40px 0 0 50%;
 }
 </style>
