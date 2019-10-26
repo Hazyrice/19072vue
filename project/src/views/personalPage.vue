@@ -108,6 +108,7 @@
 				</div>
 			</el-col>
 		</el-row>
+		<my-bottom></my-bottom>
 	</div>
 </template>
 

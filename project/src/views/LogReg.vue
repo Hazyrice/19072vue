@@ -1,6 +1,5 @@
 <template>
 	<div>
-	<top-mune></top-mune>
 	<div class="logBox">
 		<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 			<el-form-item label="用户名" prop="name"><el-input v-model="ruleForm.name"></el-input></el-form-item>
@@ -33,13 +32,13 @@ export default {
 			const that = this;
 			this.$refs[formName].validate(valid => {
 				if (valid) {
+					console.log(this)
 					this.axios.post('/login', {
 					    username: this.ruleForm.name,
 					    pwd: this.ruleForm.pwd
 					  })
 					  .then(function (response) {
 					    console.log(response);
-						alert("登陆成功")
 						console.log(that)
 						that.$router.push('/')
 					  })
@@ -62,7 +61,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped="scoped">
 .logBox {
 	display: flex;
 	justify-content: center;

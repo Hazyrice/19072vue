@@ -4,7 +4,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: 'lizongyun5635288',
-    database: 'nodejs',
+    database: 'vue_project',
     port: 3306
 });
 module.exports=pool;

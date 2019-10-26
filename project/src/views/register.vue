@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<top-mune></top-mune>
 		<div class="logBox">
 			<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 				<el-form-item label="用户名" prop="username"><el-input type="text" v-model="ruleForm.username" autocomplete="off"></el-input></el-form-item>
@@ -80,7 +79,7 @@ export default {
 };
 </script>
 
-<style scoped="">
+<style scoped="scoped">
 .el-form-item {
 	margin-bottom: 32px;
 }
