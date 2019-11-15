@@ -1,169 +1,213 @@
 <template>
-	<div class="nn">
-		<div id="nav">
-			<div class="nav-img">
-				<img src="../../public/国.png" alt="">
-			</div>
-			<div class="nav-middle">
-				<ul>
-					<li @click="toHome">首页</li>
-					<li @click="toFind">发现</li>
-					<li @click="toPerson">在线商城</li>
-					<li>应用</li>
-				</ul>
-			</div>
-			<div class="nav-right">
-				<div class="gerenzhongxin" @click="toPerson">
-					<div>个人中心</div>
-					<div><img src="../../public/个人中心.png" alt=""></div>
-				</div>
-				<div class="gouwuche" style="cursor: pointer;" @click="toshop()">
-					<div class="gouwuche-top">
-						<div>购物车</div>
-					<div><img src="../../public/购物车.png" alt=""></div>
-					</div>
-					<div class="gouwuche-box">
-						<img src="../../public/购物车-1.png" alt="">	
-						<p>购物车为空</p>
+	<div class="gudiemenu wide">
+		<div class="top-logo">
+			<a title="大国品牌"><img src="../assets/logo(2).png" alt="logo" class="logo" /></a>
+		</div>
+		<div class="container">
+			<ul>
+				<li class="connect"><a @click="toHome()" title="首页">首页</a></li>
+				<li class="connect">
+					<a  title="在线商城"><strong>在线商城</strong></a>
+				</li>
+				<li class="connect"><a @click="toFind()" title="发现">发现</a></li>
+			</ul>
+		</div>
+		<ul class="p-c float">
+			<li class="personal-center"><a @click="toPerson()"></a></li>
+			<li class="scart">
+				<a @click="toShop()"></a>
+				<div class="scart-hiddenbox">
+					<div>
+						<div class="logo"></div>
+						<div class="scart-words">
+							<h3 style="color: #999;">购物车为空</h3>
+							<p>您还没有选购任何商品，现在前往商城选购吧！</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		</div>
+			</li>
+		</ul>
+	</div>
 </template>
 
 <script>
-	export default {
-	  name: 'nabigator',
-	  methods:{
-		  toFind(){
-		  			this.$router.push('/find')  
-		  },
-		  toPerson(){
-			  if(11){
-				  this.$router.push('/logReg')
-			  }else{
-		  			this.$router.push('/person')  
-			  }
-		  },
-		  toHome(){
-		  			this.$router.push('/')  
-		  },
-		  toshop(){
-			this.$router.push('/shop')  
-		  },
-	  }
+export default {
+	name: 'navigator',
+	created() {
+	},
+	methods: {
+		toFind() {
+			let cookie = this.PublicMethod.getCookie('user-cookie');
+			if (cookie == undefined || cookie == null || cookie == NaN || cookie == '') {
+				this.$router.push('/logReg');
+			} else {
+				this.$router.push('/find');
+			}
+		},
+		toPerson() {
+			let cookie = this.PublicMethod.getCookie('user-cookie');
+			if (cookie == undefined || cookie == null || cookie == NaN || cookie == '') {
+				this.$router.push('/logReg');
+			} else {
+				this.$router.push('/person');
+			}
+		},
+		toHome(){
+			this.$router.push('/');
+		},
+		toShop() {
+			let cookie = this.PublicMethod.getCookie('user-cookie');
+			if (cookie == undefined || cookie == null || cookie == NaN || cookie == '') {
+				this.$router.push('/logReg');
+			} else {
+				this.$router.push('/shop');
+			}
+		},
+		cookieCheck() {
+			this.axios.get('/check.do').then(function(res) {
+				return res;
+			});
+		}
 	}
-	
+};
 </script>
 
-<style>
-	* {
-		margin: 0;
-		padding: 0;
-		/*background-color: #ECECEC;*/
-	}
-	#container {
-		background-color: #ECECEC;
-		width: 100%;
-		height: 1500px;
-	}
-	.nn {
-		background-color: #343537;
-	}
-	#nav {
-		width: 1220px;
-		height: 44px;
-		margin: 0 auto;
-		background-color: #343537;
-		display: flex;
-	}
-	.nav-img {
-		background-color: #fff;
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-	}
-	.nav-img img {
-		width: 40px;
-		height: 40px;
-	}
-	.nav-middle {
-		width:500px;
-		margin: 0 auto;
-		color: white;
-		line-height: 44px;
-		/*border: 1px solid red;*/
-	}
-	.nav-middle ul {
-		list-style: none;
-		display: flex;
-		justify-content: space-between;
-	}
-	.nav-middle li {
-		width: 80px;
-		cursor: pointer;
-	}
-	.nav-middle li:hover {
-		text-shadow: 0px 0px 20px;
-	}
-	.nav-right {
-		display: flex;
-		width: 280px;
-		/*border: 1px solid red;*/
-		justify-content: space-between;
-		margin-right: 30px;
-	}
-	
-	.nav-right img{
-		width: 40px;
-		height: 40px;
-	}
-	.gerenzhongxin {
-		display: flex;
-		justify-content: space-between;
-		color: #fff;
-		line-height: 44px;
-		cursor: pointer;
-	}
-	.gerenzhongxin img {
-		width: 35px;
-		height: 35px;
-		margin-top: 6px;
-	}
-	.gouwuche {
-		position: relative;
-	}
-	.gouwuche-box {
-		width: 260px;
-		height: 260px;
-		border-radius: 20px;
-		border: 1px solid #ccc;
-		position: absolute;
-		top: 43px;
-		right: 3px;
-		background-color: #fff;
-		display: none;
-		z-index: 100;
-	}
-	.gouwuche-top {
-		display: flex;
-		justify-content: space-between;
-		color: white;
-		line-height: 44px;
-	}
-	.gouwuche-box img {
-		display: block;
-		width: 100px;
-		height: 100px;
-		margin: 40px auto;
-	}
-	.gouwuche-box p {
-		margin-left: 65px;
-		font-size: 20px;
-		color: #bbb;
-	}
-	.gouwuche:hover .gouwuche-box{
-		display: block;
-	}
+<style scoped="scoped">
+/* 清除列表样式 */
+ul {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+.gudiemenu {
+	height: 45px;
+	background-image: linear-gradient(135deg, #41295a, #2F0743);
+	position: relative;
+	z-index: 30;
+}
+
+.top-logo {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	margin: 13px 0 0 21px;
+	padding-right: 56px;
+}
+
+.logo {
+	width: 25px;
+	height: 22px;
+}
+
+.container {
+	width: 1220px;
+	height: 45px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.container > ul {
+	width: 891px;
+	height: 45px;
+	margin-left: 181px;
+}
+
+.connect {
+	float: left;
+	margin-right: 1.25rem;
+}
+
+.connect a {
+	line-height: 45px;
+	text-decoration: none;
+	color: hsla(0, 0%, 100%, 0.7);
+	padding: 20px;
+	font-size: 12px;
+}
+
+.connect a:hover {
+	color: #fafafa;
+}
+
+.p-c {
+	width: 80px;
+	height: 20px;
+	position: absolute;
+	top: 11px;
+	right: 18px;
+}
+
+.p-c li {
+	float: left;
+}
+
+.personal-center {
+	width: 30px;
+	height: 20px;
+}
+
+.personal-center a {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(http://static.smartisanos.cn/index/assets/images/avatar-and-cart.c2634628597594cf0fdab831abe6499d.png) no-repeat;
+	background-position: 1px 1px;
+	background-size: 180%;
+	margin: 2px 0 0 23px;
+}
+
+.personal-center a:hover {
+	background-position: -17px 1px;
+}
+
+.scart {
+	width: 22px;
+	height: 40px;
+	margin: 1px 0 0 26px;
+}
+
+.scart a {
+	display: inline-block;
+	width: 21px;
+	height: 20px;
+	background: url(http://static.smartisanos.cn/index/assets/images/avatar-and-cart.c2634628597594cf0fdab831abe6499d.png) no-repeat;
+	background-position: -18px -18px;
+	background-size: 180%;
+	margin-top: 1px;
+}
+
+.scart-hiddenbox {
+	width: 360px;
+	box-shadow: 0 11px 50px #888;
+	height: 134px;
+	padding-top: 180px;
+	margin: 8px 0 0 -332px;
+	background-color: #fafafa;
+	border: 1px solid #bebcbc;
+	border-radius: 10px;
+	text-align: center;
+	color: #bebcbc;
+	font-size: 12px;
+	display: none;
+}
+
+.scart-hiddenbox .logo {
+	width: 90px;
+	height: 90px;
+	position: absolute;
+	top: 115px;
+	left: -146px;
+	background: url(http://static.smartisanos.cn/index/assets/images/cart-empty.01f4c99a9df22275a7d374be0195adc7.png) no-repeat;
+	background-size: 120%;
+}
+
+.scart-words {
+	margin-top: 5px;
+}
+
+.scart:hover .scart-hiddenbox {
+	display: block;
+}
 </style>

@@ -8,18 +8,24 @@ import axios from 'axios'
 import infiniteScroll from 'vue-infinite-scroll'
 import navigator from "./components/navigator.vue"
 import bottom from "./components/bottom.vue"
+import PM from './util/PublicMethod.js'
+import MySwiper from './util/mySwiper.js'
 
 
-Vue.component('my-navigator',navigator)
-Vue.component('my-bottom',bottom)
+
+Vue.component('my-navigator', navigator)
+Vue.component('my-bottom', bottom)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
-Vue.prototype.axios = axios
+Vue.prototype.PublicMethod = PM;
 Vue.use(infiniteScroll)
 axios.defaults.baseURL = 'http://localhost:9191';
+axios.defaults.withCredentials = true;
+Vue.prototype.axios = axios
+Vue.prototype.MySwiper = MySwiper;
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+	router,
+	store,
+	render: h => h(App)
 }).$mount('#app')

@@ -4,19 +4,19 @@ class VueService {
 	constructor() {
 	    this.vueDao = new VueDao();
 	}
-	showAll(cb) {
-		this.vueDao.showMember((data)=>{
-			cb(data);
-		})
-	}
-	searchAll(a,cb) {
-		this.vueDao.search(a,(data)=>{
-			cb(data);
-		})
-	}
 	login(username,pwd,cb) {
 		this.vueDao.selectByUsernameAndPwd(username,pwd,(data)=>{
 			cb(data);
+		});
+	}
+	check(username,cb) {
+		this.vueDao.checkUsername(username,(data)=>{
+			cb(data)
+		})
+	}
+	add(username,pwd,cb) {
+		this.vueDao.addUser(username,pwd,(data)=>{
+			cb(data)
 		});
 	}
 }

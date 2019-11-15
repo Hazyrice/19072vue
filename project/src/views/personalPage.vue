@@ -36,6 +36,7 @@
 							</el-submenu>
 						</el-submenu>
 						<el-menu-item index="3">消息</el-menu-item>
+						<el-menu-item index="4" @click='logout()'>退出登录</el-menu-item>
 					</el-menu>
 					<div class="line"></div>
 				</div>
@@ -148,6 +149,14 @@ export default {
 					this.busy = false;
 				}
 			}, 700);
+		},
+		logout() {
+			this.PublicMethod.clearAllCookie();
+			this.$router.push('/')
+			this.$message({
+				message:'你已成功退出当前账号',
+				type:'success'
+			})
 		}
 	}
 };

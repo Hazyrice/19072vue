@@ -109,9 +109,9 @@
   
    
   
+	<my-bottom></my-bottom>
   </div>
 </template>
-
 <script>
 import topMenu from "@/components/topMenu.vue";
 import axios from "axios";
