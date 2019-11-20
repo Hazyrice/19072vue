@@ -1,13 +1,13 @@
 <template>
 	<div class="gudiemenu wide">
 		<div class="top-logo">
-			<a title="大国品牌"><img src="../assets/logo(2).png" alt="logo" class="logo" /></a>
+			<a title="大国品牌" href="/"><img src="../assets/logo(2).png" alt="logo" class="logo" /></a>
 		</div>
 		<div class="container">
 			<ul>
 				<li class="connect"><a @click="toHome()" title="首页">首页</a></li>
 				<li class="connect">
-					<a  title="在线商城"><strong>在线商城</strong></a>
+					<a  title="在线商城" @click="toShop()"><strong>在线商城</strong></a>
 				</li>
 				<li class="connect"><a @click="toFind()" title="发现">发现</a></li>
 			</ul>
@@ -15,7 +15,7 @@
 		<ul class="p-c float">
 			<li class="personal-center"><a @click="toPerson()"></a></li>
 			<li class="scart">
-				<a @click="toShop()"></a>
+				<a @click="toScart()"></a>
 				<div class="scart-hiddenbox">
 					<div>
 						<div class="logo"></div>
@@ -34,6 +34,10 @@
 export default {
 	name: 'navigator',
 	created() {
+		let cookie = this.PublicMethod.getCookie('user-cookie');
+		if (cookie == undefined || cookie == null || cookie == NaN || cookie == '') {
+			this.$router.push('/logReg');
+		}
 	},
 	methods: {
 		toFind() {
@@ -61,6 +65,14 @@ export default {
 				this.$router.push('/logReg');
 			} else {
 				this.$router.push('/shop');
+			}
+		},
+		toScart() {
+			let cookie = this.PublicMethod.getCookie('user-cookie');
+			if (cookie == undefined || cookie == null || cookie == NaN || cookie == '') {
+				this.$router.push('/logReg');
+			} else {
+				this.$router.push('/scart');
 			}
 		},
 		cookieCheck() {
@@ -175,7 +187,7 @@ a {
 	background: url(http://static.smartisanos.cn/index/assets/images/avatar-and-cart.c2634628597594cf0fdab831abe6499d.png) no-repeat;
 	background-position: -18px -18px;
 	background-size: 180%;
-	margin-top: 1px;
+	margin-top: 0.25rem;
 }
 
 .scart-hiddenbox {

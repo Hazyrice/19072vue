@@ -3,9 +3,9 @@
 		<img src="../assets/reg.jpg" alt="bg-img" />
 		<div class="logBox">
 			<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-				<el-form-item label="用户名" prop="username"><el-input ref='username' type="text" v-model="ruleForm.username" autocomplete="off"></el-input></el-form-item>
-				<el-form-item label="密码" prop="pass"><el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input></el-form-item>
-				<el-form-item label="确认密码" prop="checkPass"><el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input></el-form-item>
+				<el-form-item label="用户名" prop="username"><el-input ref='username' type="text" v-model="ruleForm.username" placeholder="请输入用户名,长度为4到12位" autocomplete="off"></el-input></el-form-item>
+				<el-form-item label="密码" prop="pass"><el-input type="password" v-model="ruleForm.pass" placeholder="请输入密码,长度为6到16位,且包含数字字母" autocomplete="off"></el-input></el-form-item>
+				<el-form-item label="确认密码" prop="checkPass"><el-input type="password" v-model="ruleForm.checkPass" placeholder="请再输入一遍密码" autocomplete="off"></el-input></el-form-item>
 				<el-form-item>
 					<el-button plain type="primary" @click="submitForm('ruleForm')">提交</el-button>
 					<el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -19,14 +19,13 @@
 export default {
 	data() {
 		var validateUsername = (rule, value, callback) => {
-			if (value === '') {
-				callback(new Error('请输入用户名'));
+			if (value.length == 0) {
+				callback();
 			} else if (/[ \\\ / * ? : "<>. | ]/.test(value)) {
 				callback(new Error('用户名含有非法字符'));
-			} else if (value.trim().length <= 3) {
-				callback(new Error('用户名字数至少为4位以上'));
+			} else if (value.trim().length <= 3|| value.trim().length >= 12) {
+				callback(new Error('用户名字数至少为4位以上,12位以下'));
 			} else {
-				const that = this
 				this.axios
 					.post('/checkUsername', {
 						username: value
@@ -37,7 +36,6 @@ export default {
 						} else {
 							callback();
 						}
-						// that.$router.push('/')
 					})
 					.catch(function(error) {
 						console.log(error);
@@ -45,8 +43,8 @@ export default {
 			}
 		};
 		var validatePass = (rule, value, callback) => {
-			if (value === '') {
-				callback(new Error('请输入密码'));
+			if (value.length == 0) {
+				callback();
 			} else {
 				if (/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/.test(value)) {
 					this.$refs.ruleForm.validateField('checkPass');
@@ -60,7 +58,7 @@ export default {
 		};
 		var validatePass2 = (rule, value, callback) => {
 			if (value === '') {
-				callback(new Error('请再次输入密码'));
+				callback();
 			} else if (value !== this.ruleForm.pass) {
 				callback(new Error('两次输入密码不一致!'));
 			} else {
@@ -99,7 +97,7 @@ export default {
 									type: 'success',
 									position: 'bottom-right'
 								});
-								that.$router.push('/');
+								that.$router.push('/logReg');
 							}
 						})
 						.catch(function(error) {
@@ -135,14 +133,12 @@ export default {
 }
 .logBox {
 	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 50%;
-	height: 600px;
+	width: 33%;
+	height: 270px;
 	margin: 0 auto;
 	margin-top: 40px;
 	left: 21.375rem;
+	top: 8.75rem;
 }
 .el-form-item {
 	margin-bottom: 32px;

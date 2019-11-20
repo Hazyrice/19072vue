@@ -36,7 +36,7 @@
 							</el-submenu>
 						</el-submenu>
 						<el-menu-item index="3">消息</el-menu-item>
-						<el-menu-item index="4" @click='logout()'>退出登录</el-menu-item>
+						<el-menu-item index="4" @click="logout()">退出登录</el-menu-item>
 					</el-menu>
 					<div class="line"></div>
 				</div>
@@ -103,8 +103,7 @@
 					<div class="right-box">广告位</div>
 					<div class="calendar">
 						<div class="calendar-top">我的日历</div>
-						<el-calendar v-model="value">
-						</el-calendar>
+						<el-calendar v-model="value"></el-calendar>
 					</div>
 				</div>
 			</el-col>
@@ -152,11 +151,11 @@ export default {
 		},
 		logout() {
 			this.PublicMethod.clearAllCookie();
-			this.$router.push('/')
+			this.$router.push('/');
 			this.$message({
-				message:'你已成功退出当前账号',
-				type:'success'
-			})
+				message: '你已成功退出当前账号',
+				type: 'success'
+			});
 		}
 	}
 };
@@ -329,7 +328,7 @@ a {
 </style>
 <!-- 全局下的属性 -->
 <style>
-	.el-calendar-table .el-calendar-day {
-		height: 40px!important;
-	}
+.el-calendar-table .el-calendar-day {
+	height: 40px !important;
+}
 </style>

@@ -5,7 +5,9 @@ import Person from '../views/personalPage.vue'
 import RegLog from '../views/LogReg.vue'
 import Register from '../views/register.vue'
 import Find from '../views/find.vue'
-import Shop from '../views/buycar.vue'
+import BuyCar from '../views/buycar.vue'
+import GoodsDetail from '../views/goodsDetail.vue'
+import Shop from '../views/shop.vue'
 
 Vue.use(VueRouter)
 
@@ -36,10 +38,20 @@ const routes = [
   	component:Find
   },
   {
+    path: '/scart',
+    name: 'scart',
+  	component:BuyCar
+  },
+  {
+    path: '/goodsDetail',
+    name: 'goodsDetail',
+  	component:GoodsDetail
+  },
+  {
     path: '/shop',
     name: 'shop',
   	component:Shop
-  },
+  }
 ]
 
 const router = new VueRouter({

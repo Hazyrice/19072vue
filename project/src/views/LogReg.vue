@@ -3,8 +3,8 @@
 		<img src="../assets/logbg.jpg" alt="bg-pic" />
 		<div class="logBox">
 			<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-				<el-form-item label="用户名" prop="name"><el-input v-model="ruleForm.name"></el-input></el-form-item>
-				<el-form-item label="密码" prop="pwd"><el-input type="password" v-model="ruleForm.pwd"></el-input></el-form-item>
+				<el-form-item label="用户名" prop="name"><el-input v-model="ruleForm.name" placeholder="请输入您的用户名"></el-input></el-form-item>
+				<el-form-item label="密码" prop="pwd"><el-input type="password" v-model="ruleForm.pwd" placeholder="请输入您的密码"></el-input></el-form-item>
 				<el-form-item size="large">
 					<el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
 					<el-button @click="goToRegister">注册</el-button>
@@ -41,6 +41,7 @@ export default {
 							})
 							.then(function(response) {
 								if (response.data.check == 'ok') {
+									
 									that.$notify({
 										title: '成功',
 										message: response.data.inf,

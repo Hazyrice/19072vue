@@ -39,7 +39,7 @@ app.post('/login', (req, res) => {
 			})
 			res.json({
 				inf: '登陆成功',
-				check: 'ok'
+				check: 'ok',
 			});
 		} else {
 			res.json({
